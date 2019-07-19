@@ -7,18 +7,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_horizontal"
+        android:background="@drawable/bg_login"
         tools:context=".LoginActivity">
-    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+    <ImageView android:layout_width="150dp" android:layout_height="150dp"
                android:id="@+id/login_iv_logo"
                android:layout_marginTop="100dp"
-               tools:srcCompat="@tools:sample/avatars"/>
+               android:src="@drawable/ic_sample"/>
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:orientation="vertical"
                   android:layout_marginLeft="30dp"
                   android:layout_marginRight="30dp"
+                  android:layout_marginTop="250dp"
     >
         <com.kakao.usermgmt.LoginButton
-                android:layout_marginTop="300dp"
                 android:id="@+id/login_btn_kakaologin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
