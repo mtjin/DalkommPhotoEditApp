@@ -9,15 +9,15 @@
         android:gravity="center_horizontal"
         android:background="@drawable/bg_login"
         tools:context=".LoginActivity">
-    <ImageView android:layout_width="150dp" android:layout_height="150dp"
+    <ImageView android:layout_width="wrap_content" android:layout_height="300dp"
                android:id="@+id/login_iv_logo"
-               android:layout_marginTop="100dp"
-               android:src="@drawable/ic_sample"/>
+               android:layout_marginTop="20dp"
+               android:src="@drawable/ic_logo_white"/>
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:orientation="vertical"
                   android:layout_marginLeft="30dp"
                   android:layout_marginRight="30dp"
-                  android:layout_marginTop="250dp"
+                  android:layout_marginTop="150dp"
     >
         <com.kakao.usermgmt.LoginButton
                 android:id="@+id/login_btn_kakaologin"
