@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "577438851358",
+    "firebase_url": "https://dalkommphoto.firebaseio.com",
+    "project_id": "dalkommphoto",
+    "storage_bucket": "dalkommphoto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577438851358:android:ebb41b04c3226736",
+        "android_client_info": {
+          "package_name": "com.example.dalkommphoto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577438851358-cl2sltt3lgq7fg2a9er3m8bdf7cbvcdc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dalkommphoto",
+            "certificate_hash": "2594505716124fb73c0d9ca0633d9dd80b38d943"
+          }
+        },
+        {
+          "client_id": "577438851358-os0t954r3dl7i466atbjheukslmmt20u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH6KterKBAr9FaLbaUL1hQhIZ6ms0rHm4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577438851358-os0t954r3dl7i466atbjheukslmmt20u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

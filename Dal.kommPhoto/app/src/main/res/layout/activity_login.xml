@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        tools:context=".LoginActivity">
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+               android:id="@+id/login_iv_logo"
+               android:layout_marginTop="100dp"
+               tools:srcCompat="@tools:sample/avatars"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:layout_marginLeft="30dp"
+                  android:layout_marginRight="30dp"
+    >
+        <com.kakao.usermgmt.LoginButton
+                android:layout_marginTop="300dp"
+                android:id="@+id/login_btn_kakaologin"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"/>
+
+        <Button android:layout_width="match_parent" android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorskyblue"
+                android:text="회원가입"
+                android:textSize="15dp"
+                android:textColor="@color/colorwhite"
+        />
+    </LinearLayout>
+</LinearLayout>
