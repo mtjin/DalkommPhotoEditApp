@@ -4,7 +4,7 @@
     <item android:drawable="@color/colorPrimary" />
     <!--로고나 기타 원하는 이미지-->
     <item>
-        <bitmap android:src="@drawable/bg_logo"
+        <bitmap android:src="@drawable/bg_tmp_splash"
                 android:gravity="center" />
     </item>
 

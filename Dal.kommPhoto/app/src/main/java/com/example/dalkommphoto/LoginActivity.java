@@ -45,14 +45,17 @@ public class LoginActivity extends Activity {
 
         setContentView(R.layout.activity_login);
 
-        callback = new SessionCallback();                  // 이 두개의 함수 중요함
+        //카카오 로그인 콜백받기
+        callback = new SessionCallback();
         Session.getCurrentSession().addCallback(callback);
+        //키값 알아내기(알아냈으면 등록하고 지워도 상관없다)
         getAppKeyHash();
 
         //자기 카카오톡 프로필 정보 및 디비정보 쉐어드에 저장해놨던거 불러오기
         loadShared();
     }
 
+    //카카오 디벨로퍼에서 사용할 키값을 로그를 통해 알아낼 수 있다. (로그로 본 키 값을을 카카오 디벨로퍼에 등록해주면 된다.)
     private void getAppKeyHash() {
         try {
             PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
