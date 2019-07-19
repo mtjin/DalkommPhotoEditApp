@@ -8,15 +8,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.util.Base64;
 import android.util.Log;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.kakao.auth.ErrorCode;
 import com.kakao.auth.ISessionCallback;
@@ -151,13 +145,13 @@ public class LoginActivity extends Activity {
                                 saveShared(userProfile.getId() + "", userProfile.getNickname());
                             }
                         });
-                redirectMainActivity(); // 로그인 성공시 MainActivity로
+                redirectHomeActivity(); // 로그인 성공시 MainActivity로
 
             }
         });
     }
 
-    private void redirectMainActivity() {
+    private void redirectHomeActivity() {
         startActivity(new Intent(this, HomeActivity.class));
         finish();
     }
