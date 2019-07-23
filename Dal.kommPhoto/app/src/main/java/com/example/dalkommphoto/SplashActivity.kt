@@ -19,4 +19,15 @@ class SplashActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+<<<<<<< HEAD
+=======
+
+    private fun fadeIn(view : TextView, duration: Int){
+        Handler().postDelayed({
+            view.visibility = View.VISIBLE
+            view.startAnimation(fadeIn)
+        }, duration.toLong())
+    }
+
+>>>>>>> 200ff4bb82254eaff296210666ea240de1495b83
 }
