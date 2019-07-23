@@ -181,5 +181,4 @@ public class LoginActivity extends Activity {
         token = pref.getString("token", "");
         name = pref.getString("name", "");
     }
-
 }

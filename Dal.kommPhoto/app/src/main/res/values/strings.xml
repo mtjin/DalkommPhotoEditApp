@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Dal.kommPhoto</string>
     <string name="kakao_app_key">3a1dee65077b90b4343767c36e6ae50f</string>
+    <!-- Bottom Navigation View -->
+    <string name="home">home</string>
+    <string name="search">Search</string>
+    <string name="gallery">Gallery</string>
+    <string name="chat">Chat</string>
+    <string name="account">Account</string>
+    <string name="picture">picture</string>
 </resources>
