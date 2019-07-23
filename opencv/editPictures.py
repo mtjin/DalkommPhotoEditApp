@@ -1,6 +1,6 @@
-import cv2
-import numpy as np
 import copy
+import numpy as np
+import cv2
 
 import faceRecognition
 
@@ -8,6 +8,9 @@ class processEdit:  #이미지 편집 처리기능
 
     def __init__(self):
         self.processImg = ''
+
+    def setFilename(self, fn):
+        self.processImg = fn
 
     def cutting(self):
         face = faceRecognition.processFace()
@@ -48,3 +51,4 @@ class processEdit:  #이미지 편집 처리기능
 
             self.processImg = edge
             return self.processImg
+
