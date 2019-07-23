@@ -4,8 +4,11 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import com.google.firebase.firestore.FirebaseFirestore
 
 class EditActivity : AppCompatActivity(){
+
+    internal var db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

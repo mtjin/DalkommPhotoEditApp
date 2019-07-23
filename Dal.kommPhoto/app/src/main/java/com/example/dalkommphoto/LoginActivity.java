@@ -48,6 +48,7 @@ public class LoginActivity  extends Activity {
         Session.getCurrentSession().addCallback(callback);
         getAppKeyHash();
     }
+    
     private void getAppKeyHash() {
         try {
             PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
