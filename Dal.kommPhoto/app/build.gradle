@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 ext.anko_version = '0.10.1'
 android {
     compileSdkVersion 28
-    buildToolsVersion "28.0.2"
+    buildToolsVersion "29.0.1"
     defaultConfig {
         applicationId "com.example.dalkommphoto"
         minSdkVersion 16
