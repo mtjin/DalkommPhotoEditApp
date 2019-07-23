@@ -54,6 +54,6 @@ dependencies {
     implementation "org.jetbrains.anko:anko:$anko_version"
     /*카카오로그인*/
     implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
-    compile 'com.github.zomato:androidphotofilters:1.0.2'
+    implementation 'com.github.zomato:androidphotofilters:1.0.2'
 }
 apply plugin: 'com.google.gms.google-services'

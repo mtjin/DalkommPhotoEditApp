@@ -16,18 +16,14 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionbar">
         <activity android:name=".LoginActivity">
+        </activity>
+        <activity android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <!--<activity android:name=".SplashActivity"-->
-            <!--android:theme="@style/SplashTheme">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
 
         <meta-data
                 android:name="com.kakao.sdk.AppKey"
@@ -38,8 +34,6 @@
         <activity android:name=".HomeActivity">
         </activity>
         <activity android:name=".EditPhotoActivity">
-        </activity>
-        <activity android:name=".SplashActivity">
         </activity>
     </application>
 
