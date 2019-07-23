@@ -13,6 +13,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+
+
         <meta-data
                 android:name="com.kakao.sdk.AppKey"
                 android:value="@string/kakao_app_key"/>
@@ -26,6 +28,15 @@
         </activity> <!-- 카카오톡 -->
         <activity android:name=".HomeActivity">
         </activity>
+
+
+
+        <!--<activity-->
+                <!--android:name=".EditActivity"-->
+                <!--android:label="ListView"-->
+                <!--android:parentActivityName=".HomeActivity">-->
+        <!--</activity> &lt;!&ndash; 편집화면 &ndash;&gt;-->
+
     </application>
 
 </manifest>
