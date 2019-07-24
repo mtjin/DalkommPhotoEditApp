@@ -38,7 +38,6 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         supportActionBar!!.setTitle("")  //해당 액티비티의 툴바에 있는 타이틀을 공백으로 처리
 
         search_file = findViewById<View>(R.id.search_file) as ImageView
-
         search_file!!.setOnClickListener{
             if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
                 startActivity(Intent(this, EditPhotoActivity::class.java))
