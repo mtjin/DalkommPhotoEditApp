@@ -55,7 +55,10 @@ dependencies {
     /*카카오로그인*/
     implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
     implementation 'com.github.zomato:androidphotofilters:1.0.2'
+<<<<<<< HEAD
     /* 글라이드 */
     implementation 'com.github.bumptech.glide:glide:4.9.0'
+=======
+>>>>>>> 1de144e91bd155ebdfa4e4d87c92316df2a5232d
 }
 apply plugin: 'com.google.gms.google-services'

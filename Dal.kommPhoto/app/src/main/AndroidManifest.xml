@@ -17,11 +17,15 @@
             android:theme="@style/AppTheme.NoActionbar">
 
         <activity android:name=".LoginActivity">
+        </activity>
+        <activity android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+<<<<<<< HEAD
 
         <!--<activity android:name=".SplashActivity"-->
         <!--android:theme="@style/SplashTheme">-->
@@ -30,6 +34,8 @@
         <!--<category android:name="android.intent.category.LAUNCHER"/>-->
         <!--</intent-filter>-->
         <!--</activity>-->
+=======
+>>>>>>> 1de144e91bd155ebdfa4e4d87c92316df2a5232d
 
         <meta-data
                 android:name="com.kakao.sdk.AppKey"
