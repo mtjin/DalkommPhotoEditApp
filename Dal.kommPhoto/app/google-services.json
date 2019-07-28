@@ -15,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "577438851358-cl2sltt3lgq7fg2a9er3m8bdf7cbvcdc.apps.googleusercontent.com",
+          "client_id": "577438851358-gf4go8me5378712iak20n1r9ulndc5gv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dalkommphoto",
+            "certificate_hash": "eb8feeda8fc1fb7860be5b37119e4b2296d85ff6"
+          }
+        },
+        {
+          "client_id": "577438851358-e887uenntdfjrje7178fco46k4ntibck.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.dalkommphoto",

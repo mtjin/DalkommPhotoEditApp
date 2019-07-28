@@ -1,16 +1,24 @@
 package com.example.dalkommphoto;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.kakao.auth.ErrorCode;
 import com.kakao.auth.ISessionCallback;
@@ -29,14 +37,18 @@ import java.util.Map;
 /**
  * Created by hp on 2016-01-26.
  */
-public class LoginActivity extends Activity {
+public class LoginActivity extends AppCompatActivity {
 
     private SessionCallback callback;      //콜백 선언
     //유저프로필
-    String token = "";
-    String name = "";
-
+    String token = ""; //카카오톡 토큰
+    String name = ""; //카카오톡상 이름
+    String email = ""; //이메일(아이디와 조합해서 임시로만들어줌)
+    String password = "dalkomdalkom@"; //비번
+    //파이어베이스 디비
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    // Initialize Firebase Auth
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     final static String TAG = "LoginActivityT";
 
     @Override
@@ -115,6 +127,7 @@ public class LoginActivity extends Activity {
                 if (result == ErrorCode.CLIENT_ERROR_CODE) {
                     finish();
                 } else {
+                    Log.d(TAG, "1");
                     redirectLoginActivity();
                 }
             }
@@ -133,11 +146,15 @@ public class LoginActivity extends Activity {
                 Logger.d("UserProfile : " + userProfile);
                 Log.d(TAG, "유저가입성공");
                 // Create a new user with a first and last name
-                // 유저 카카오톡 아이디 디비에 넣음(첫가입인 경우에만 디비에저장)
+                // 문자열과 토큰과 조합해서 임시로만들어 파이어베이스 이메일인증로그인에 사용
+                email = "dalkom" + userProfile.getUUID() + "@dalkom.com";
 
+                // 유저 카카오톡 아이디 디비에 넣음(첫가입인 경우에만 디비에저장)
                 Map<String, String> user = new HashMap<>();
-                user.put("token", userProfile.getId() + "");
-                user.put("name", userProfile.getNickname());
+                token = userProfile.getId() + "";
+                user.put("token", token + "");
+                user.put("name", userProfile.getNickname() + userProfile.getId());
+                user.put("isCreateAuth", "0"); //0이면 구글AUTH 생성안한상태 1 이면 한상태
                 db.collection("users")
                         .document(userProfile.getId() + "")
                         .set(user)
@@ -145,18 +162,86 @@ public class LoginActivity extends Activity {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Log.d(TAG, "유저정보 디비삽입 성공");
-                                saveShared(userProfile.getId() + "", userProfile.getNickname());
+                                saveShared(userProfile.getId() + userProfile.getUUID() + "", userProfile.getNickname());
+                                checkIsFirstLogin(); // 로그인 성공시 MainActivity로
                             }
                         });
-                redirectHomeActivity(); // 로그인 성공시 MainActivity로
 
             }
         });
     }
 
-    private void redirectHomeActivity() {
+    //디비에 해당 유저가 이미가입되어있는지확인
+    private void checkIsFirstLogin() {
+        Log.d(TAG, "checkIsFirstLogin 진입");
+        db.collection("users").document(token).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) { //가입되있으면 바로 로그인
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        String isCreateAuth = document.getString("isCreateAuth");
+                        if (isCreateAuth.equals("0")) {
+                            db.collection("users").document(token).update("isCreateAuth", 1);
+                            createGooleEmailAuth();
+                        } else {
+                            loginWithGooleEmail();
+                        }
+                    } else { //가입안되어있으면 회원가입 이메일인증하게함
+                        Log.d(TAG, "No such document");
+                        Toast.makeText(LoginActivity.this, "로그엔 오류", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
         startActivity(new Intent(this, HomeActivity.class));
         finish();
+    }
+
+    private void createGooleEmailAuth() {
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "createUserWithEmail:success");
+                            //FirebaseUser user = mAuth.getCurrentUser();
+                            loginWithGooleEmail();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+
+                });
+    }
+
+    private void loginWithGooleEmail() {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            redirectLoginActivity();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        // ...
+                    }
+                });
     }
 
     protected void redirectLoginActivity() {
@@ -167,7 +252,7 @@ public class LoginActivity extends Activity {
     }
 
     /*쉐어드에 입력값 저장*/
-    private void saveShared( String id, String name) {
+    private void saveShared(String id, String name) {
         SharedPreferences pref = getSharedPreferences("profile", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("token", id);
@@ -180,5 +265,10 @@ public class LoginActivity extends Activity {
         SharedPreferences pref = getSharedPreferences("profile", MODE_PRIVATE);
         token = pref.getString("token", "");
         name = pref.getString("name", "");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 }

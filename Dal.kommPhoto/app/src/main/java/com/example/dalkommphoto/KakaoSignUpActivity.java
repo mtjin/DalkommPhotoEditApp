@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -19,7 +20,7 @@ import com.kakao.util.helper.log.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
-public class KakaoSignUpActivity extends Activity {
+public class KakaoSignUpActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     final static String TAG = "KaKaoSignUpActivityT";
